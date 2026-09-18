@@ -1,8 +1,15 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+target/
+build/
 .kotlin
+
+# Драйвер Edge и временные файлы WebDriverManager
+msedgedriver.exe
+webdriver-downloads/
+tmp/
+temp/
+*.log
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -37,3 +44,5 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+Driver_Notes/

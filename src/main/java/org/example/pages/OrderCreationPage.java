@@ -1,7 +1,6 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +28,7 @@ public class OrderCreationPage {
     private final By orderButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[contains(text(), 'Заказать')]");
 
     // Модальное окно подтверждения
-    private final By confirmButton = By.xpath("//button[normalize-space()='Да']");
+    private final By yesButton = By.xpath("//button[normalize-space()='Да']");
     private final By orderConfirmedHeader = By.xpath(".//*[contains(text(), 'Заказ оформлен')]");
 
     public OrderCreationPage(WebDriver driver) {
@@ -132,33 +131,15 @@ public class OrderCreationPage {
     }
 
     // Подтверждение заказа
-    public OrderCreationPage clickConfirmButton() {
+    public OrderCreationPage clickYesButton() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(confirmButton));
-        WebElement buttonYes = driver.findElement(confirmButton);
+                .until(ExpectedConditions.elementToBeClickable(yesButton));
+        WebElement buttonYes = driver.findElement(yesButton);
         new Actions(driver).moveToElement(buttonYes).click().build().perform();
         return this;
-        // 1. Ждём, пока кнопка реально станет кликабельной
-        /*WebElement btn = new WebDriverWait(driver, Duration.ofSeconds(15))
-                .withMessage("Кнопка 'Да' не стала кликабельной за 15 сек")
-                .until(ExpectedConditions.elementToBeClickable(confirmButton));
-
-        // 2. Прокручиваем к кнопке (чтобы она точно была в видимой области)
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btn);
-
-        // 3. Клик через JS (обходит проблемы с перекрытием и координатами)
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-
-        // 4. Даём интерфейсу полсекунды-секунду на реакцию (анимация закрытия, запрос к бэкенду)
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-        return this;*/
     }
 
-    public boolean isOrderConfirmed() {
+    public boolean isConfirmOrder() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(orderConfirmedHeader));
         return driver.findElement(orderConfirmedHeader).isDisplayed();

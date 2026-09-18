@@ -9,6 +9,7 @@ import org.example.pages.MainPage;
 import org.example.pages.OrderCreationPage;
 import static org.example.constants.Data.*;
 //import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 import org.junit.jupiter.api.AfterEach;
 
@@ -21,7 +22,10 @@ public class OrderCreationTest {
 
     @BeforeEach
     public void setUp() {
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
+        System.setProperty("webdriver.edge.driver", "D:\\AutomationQA\\Projects\\Berezin_samokat_sprint6\\msedgedriver.exe");
+        driver = new EdgeDriver();
+        driver.manage().window().maximize();
     }
     // Тест верхней кнопки Заказать
     @ParameterizedTest
@@ -51,8 +55,8 @@ public class OrderCreationTest {
         orderPage.fillSecondStep(DATE, ONE_DAY, BLACK_COLOR, COMMENT_ORDER);
 
         // Подтверждение
-        orderPage.clickConfirmButton();
-        boolean confirmed = orderPage.isOrderConfirmed();
+        orderPage.clickYesButton();
+        boolean confirmed = orderPage.isConfirmOrder();
 
         assertTrue(confirmed, "Заказ не оформлен через кнопку: " + buttonType);
     }
