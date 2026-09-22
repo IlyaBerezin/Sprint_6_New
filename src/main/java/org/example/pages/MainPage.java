@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.example.constants.Constants.*;
 
 import java.time.Duration;
 
@@ -13,7 +14,6 @@ public class MainPage {
 
     private final WebDriver driver;
 
-    private String url = "https://qa-scooter.education-services.ru/";
     // кнопка "Заказать"  вверху страницы
     private final By upperOrder = By.xpath(".//button[@class = 'Button_Button__ra12g']");
     // кнопка "да все привыкли"
@@ -71,7 +71,7 @@ public class MainPage {
 
     // Открытие главной страницы
     public MainPage open() {
-        driver.get(url);
+        driver.get(BASE_URL);
         return this;
     }
 }
