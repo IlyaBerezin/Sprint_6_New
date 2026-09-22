@@ -1,2 +1,2 @@
-# Sprint 6 — Java UI Automation (Selenium)
-# Sprint_6_New
+# Sprint_6
+# Sprint_6
